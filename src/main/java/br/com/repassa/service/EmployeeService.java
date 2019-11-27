@@ -1,13 +1,14 @@
 package br.com.repassa.service;
 
+import br.com.repassa.dto.EmployeeDTO;
 import br.com.repassa.model.Employee;
 
 import java.util.Optional;
 
 public interface EmployeeService {
-    Employee create(Employee employee);
+    Employee create(EmployeeDTO employeeDTO);
 
-    Employee save(Employee employee, Long id);
+    Employee save(EmployeeDTO employeeDTO, Long id);
 
     Iterable<Employee> findAll();
 

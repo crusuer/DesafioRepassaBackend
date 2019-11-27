@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -31,7 +30,7 @@ public class Employee {
 
     @Column
     @NotBlank(message = "Password may not be blank")
-    @Size(min=6)
+    @Size(min = 6)
     private String password;
 
     @Column

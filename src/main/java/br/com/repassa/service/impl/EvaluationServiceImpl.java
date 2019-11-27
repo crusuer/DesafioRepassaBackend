@@ -1,6 +1,7 @@
 package br.com.repassa.service.impl;
 
 import br.com.repassa.dto.AssignDTO;
+import br.com.repassa.dto.EvaluationDTO;
 import br.com.repassa.model.Employee;
 import br.com.repassa.model.Evaluation;
 import br.com.repassa.repository.EvaluationRepository;
@@ -76,5 +77,22 @@ public class EvaluationServiceImpl implements EvaluationService {
             return create(evaluation);
         }
         return null;
+    }
+
+    @Override
+    public Iterable<Evaluation> findAssigned(String username) {
+        return evaluationRepository.findAssigned(username);
+    }
+
+    @Override
+    public Evaluation sendFeedback(EvaluationDTO evaluationDTO, Long id) {
+        return findById(id).map(x -> {
+            x.setCreative(evaluationDTO.getCreative());
+            x.setFocused(evaluationDTO.getFocused());
+            x.setHelpful(evaluationDTO.getHelpful());
+            x.setLeadership(evaluationDTO.getLeadership());
+            x.setResponsible(evaluationDTO.getResponsible());
+            return evaluationRepository.save(x);
+        }).orElse(null);
     }
 }
