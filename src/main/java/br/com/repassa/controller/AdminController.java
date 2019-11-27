@@ -1,5 +1,6 @@
 package br.com.repassa.controller;
 
+import br.com.repassa.dto.AssignDTO;
 import br.com.repassa.model.Employee;
 import br.com.repassa.model.Evaluation;
 import br.com.repassa.service.EmployeeService;
@@ -74,5 +75,12 @@ public class AdminController {
     @DeleteMapping("/admin/evaluations/{id}")
     public void deleteEvaluation(@PathVariable Long id) {
         evaluationService.delete(id);
+    }
+
+    /* Endpoint to assigne a employee to evaluate another one */
+    @PostMapping("/admin/assign")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Evaluation assignEvaluation(@Valid @RequestBody AssignDTO assignDTO) {
+        return evaluationService.assign(assignDTO);
     }
 }

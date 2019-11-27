@@ -1,7 +1,10 @@
 package br.com.repassa.service.impl;
 
+import br.com.repassa.dto.AssignDTO;
+import br.com.repassa.model.Employee;
 import br.com.repassa.model.Evaluation;
 import br.com.repassa.repository.EvaluationRepository;
+import br.com.repassa.service.EmployeeService;
 import br.com.repassa.service.EvaluationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +18,8 @@ public class EvaluationServiceImpl implements EvaluationService {
     private static final Logger LOGGER = LogManager.getLogger(EvaluationServiceImpl.class);
     @Autowired
     private EvaluationRepository evaluationRepository;
+    @Autowired
+    private EmployeeService employeeService;
 
     @Override
     public Evaluation create(Evaluation evaluation) {
@@ -56,5 +61,20 @@ public class EvaluationServiceImpl implements EvaluationService {
     @Override
     public void delete(Long id) {
         evaluationRepository.deleteById(id);
+    }
+
+    @Override
+    public Evaluation assign(AssignDTO assignDTO) {
+        Optional<Employee> rater = employeeService.findById(assignDTO.getRater());
+        Optional<Employee> rated = employeeService.findById(assignDTO.getRated());
+
+        if (rater.isPresent() && rated.isPresent()) {
+            Evaluation evaluation = new Evaluation();
+            evaluation.setId(0L);
+            evaluation.setRater(rater.get());
+            evaluation.setRated(rated.get());
+            return create(evaluation);
+        }
+        return null;
     }
 }
