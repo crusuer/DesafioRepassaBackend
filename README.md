@@ -1,6 +1,13 @@
 # Desafio Repassa
 Este é um projeto criado como solução para o desafio da entrevista de desenvolvedor Full Stack Repassa.
-
+Neste serviço é possível:
+##### ADMIN
+* Adicionar/Remover/Atualizar/Ver Empregados
+* Adicionar/Remover/Atualizar/Ver Avaliações de Desempenho
+* Atribuir funcionários para participarem da revisão de desempenho de outro funcionário
+##### FUNCIONÁRIO
+* Listar Avaliações de desempenho que precisam de seu feedback
+* Enviar feedback
 
 # Setup da Aplicação (Local)
 
@@ -13,7 +20,7 @@ Maven 3.2.2
 Git
 ```
 
-You also need to provide the following environment properties:
+Você deve prover as seguintes variáveis de ambiente:
  - spring.datasource.platform
  - spring.datasource.url
  - spring.datasource.username
@@ -39,9 +46,10 @@ Após isso, inicie a aplicação:
 mvn spring-boot:run
 ```
 # Endpoints da API
-These endpoints allow you to manage places. 
-- If you are running the app locally, you can consider `HOST` como *http://localhost:8080*
-- If you want the Cloud app, you can consider `HOST` as *https://desafio-repassa.herokuapp.com*
+Coleção com todas as chamadas da API no Postman: <p>
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/6d560911fe9badcda14d)
+- Se quiser chamar a API localmente, considere `HOST` como *http://localhost:8080*
+- Se quiser chamar a API publicada na Nuvem, considere `HOST` como *https://desafio-repassa.herokuapp.com*
 
 ## ADMIN
 ### GET
@@ -69,4 +77,4 @@ These endpoints allow you to manage places.
 ### PUT
 `HOST`[/user/evaluations/{id}](#put-user-evaluations-id) <br/>
 ___
-To check each endpoint parameters and responses, go to `HOST`/swagger-ui.html
+Para ver a documentação da servico no SWAGGER, acesse `HOST`[/swagger-ui.html](#get-swagger-ui)
