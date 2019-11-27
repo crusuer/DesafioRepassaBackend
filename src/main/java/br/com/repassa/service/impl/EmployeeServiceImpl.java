@@ -4,8 +4,6 @@ import br.com.repassa.dto.EmployeeDTO;
 import br.com.repassa.model.Employee;
 import br.com.repassa.repository.EmployeeRepository;
 import br.com.repassa.service.EmployeeService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,7 +12,6 @@ import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private static final Logger LOGGER = LogManager.getLogger(EmployeeServiceImpl.class);
 
     @Autowired
     EmployeeRepository employeeRepository;
@@ -31,7 +28,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
         employee.setUserRole("ROLE_USER");
         employee.setEnabled(true);
-        LOGGER.info(employee);
         return employeeRepository.save(employee);
     }
 
